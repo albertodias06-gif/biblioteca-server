@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $stable->string('username')->unique(); // inclusao de username
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('type',['admin','user','librarian'])->default('user'); // tipo de usuario
+            $table->boolean('is_active')->default('true'); // stauts do usuario
             $table->rememberToken();
             $table->timestamps();
+            $table->softdeletes(); // exclusao logica
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
