@@ -52,7 +52,12 @@ class Authcontroller extends Controller
         'message' => 'Credenciais inválidas'
     ], 401);
 }
-        // validar dados
+        // verificar se o usuario esta activo
+        if (!$user->is_active) {
+            return response()->json([
+                'message' => 'Usuario inactivo. Contacte o administrador.'
+            ], 403);
+        }
 
         // criacao os token de acesso
 
