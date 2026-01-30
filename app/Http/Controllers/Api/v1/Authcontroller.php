@@ -47,11 +47,11 @@ class Authcontroller extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password))
-            'return response()=>json([
-                'message' => Credenciais invalidas'
-            ], 401);
-        }
+       if (!$user || !Hash::check($request->password, $user->password)) {
+    return response()->json([
+        'message' => 'Credenciais inválidas'
+    ], 401);
+}
         // validar dados
 
         // criacao os token de acesso
@@ -60,4 +60,5 @@ class Authcontroller extends Controller
     // 3. Logout de usuario
 
 
+}
 }
